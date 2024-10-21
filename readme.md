@@ -10,4 +10,8 @@ RSA weak parameter simulate
 
 ## Short Decryption Exponent
 
+![image](https://github.com/user-attachments/assets/bd6502de-fd0f-4905-845b-d7787f5e49b5)
+
 ## Non-Random primes
+
+![image](https://github.com/user-attachments/assets/72bf3d96-7276-490f-9ec9-d483bb5ae1f3)
