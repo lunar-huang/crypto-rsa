@@ -8,21 +8,9 @@ def generate_prime(bits=16):
         candidate = random.getrandbits(bits)
     return candidate
 
-# 将字符串消息转换为整数
-def string_to_int(message):
-    return int.from_bytes(message.encode('utf-8'), byteorder='big')
-
-# 将整数转换回字符串消息
-def int_to_string(m):
-    try:
-        return m.to_bytes((m.bit_length() + 7) // 8, byteorder='big').decode('utf-8')
-    except:
-        return "Failed to decode the message."
-
 # 加密函数
 def encrypt(plaintext, e, n):
-    m = string_to_int(plaintext)
-    c = pow(m, e, n)
+    c = pow(plaintext, e, n)
     return c
 
 # 模拟RSA加密部分
@@ -33,20 +21,20 @@ if __name__ == '__main__':
     n = p * q
     phi = (p - 1) * (q - 1)
 
-    # 生成5个不同的公钥指数 e
+    # 生成3个不同且互质的公钥指数 e
     e_list = []
-    for _ in range(5):
+    while len(e_list) < 3:
         e = random.randint(2, phi)
-        while gcd(e, phi) != 1 or e in e_list:
-            e = random.randint(2, phi)
+        if gcd(e, phi) != 1 or any(gcd(e, ex) != 1 for ex in e_list):
+            continue
         e_list.append(e)
 
-    # 原始消息
-    message = "HELLO_RSA"
-    print(f"Original message: {message}")
+    # 选择一个数字形式的明文
+    plaintext = 42  # 示例数字明文
+    print(f"Original plaintext: {plaintext}")
 
     # 使用不同的 e 加密消息
-    c_list = [encrypt(message, e, n) for e in e_list]
+    c_list = [encrypt(plaintext, e, n) for e in e_list]
 
     # 输出加密结果
     for i, (e, c) in enumerate(zip(e_list, c_list), start=1):
