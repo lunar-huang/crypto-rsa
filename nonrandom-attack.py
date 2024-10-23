@@ -12,10 +12,9 @@ def decrypt(ciphertext, d, n):
     m = pow(ciphertext, d, n)
     return int_to_string(m)
 
-# 平方根试除法攻击
+# trial division near sqrt(n)
 def sqrt_trial_attack(n):
     sqrt_n = isqrt(n)
-    # 在平方根附近尝试寻找因子
     for i in range(sqrt_n - 1000, sqrt_n + 1000):
         if n % i == 0:
             p = i

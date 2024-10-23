@@ -5,16 +5,15 @@ def int_to_string(m):
     except:
         return "Failed to decode the message."
 
-# 解密函数
+# decrypt
 def decrypt(ciphertext, d, n):
     m = pow(ciphertext, d, n)
     return int_to_string(m)
 
-# 暴力枚举短解密指数 d 进行攻击
+# brute force for small d to attack
 def short_d_attack(ciphertext, n, max_d=2**16):
-    # 尝试所有可能的 d 值
+    # try every possible d smaller than 2^16
     for d in range(2, max_d):
-        # 解密尝试
         plaintext = decrypt(ciphertext, d, n)
         if "Failed to decode the message" not in plaintext:
             return plaintext, d

@@ -15,19 +15,13 @@ def extended_gcd(a, b):
         x, y, g = extended_gcd(b, a % b)
         return y, x - (a // b) * y, g
 
-# 共模攻击函数（仅两对 e 和 c）
+# common_modulus_attack e and c
 def common_modulus_attack(n, e1, e2, c1, c2):
-    """
-    使用扩展欧几里得算法对两对 (e, c) 进行共模攻击
-    :param n: 模数 n
-    :param e1, e2: 两个公钥指数
-    :param c1, c2: 两个密文
-    :return: 恢复的明文 m（整数形式）
-    """
-    # 计算 e1 和 e2 的线性组合
+
+    # use extend euclid algo
     s1, s2, g = extended_gcd(e1, e2)
     if g != 1:
-        print("公钥指数不互质，攻击失败。")
+        print("public exponent e are not coprime with each other")
         return None
 
     # 计算 m 的合并幂次

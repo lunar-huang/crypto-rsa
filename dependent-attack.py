@@ -1,11 +1,10 @@
 from math import isqrt
 from sympy import mod_inverse, gcd
 
-# 平方根试除法攻击
+# start trial division from sqrt(n)
 def sqrt_trial_attack(n):
-    # 从 n 的平方根开始尝试寻找因子
     sqrt_n = isqrt(n)
-    for i in range(sqrt_n, sqrt_n - 10000, -1):  # 向下试除10000个数
+    for i in range(sqrt_n, sqrt_n - 10000, -1):  # try 10000 times
         if n % i == 0:
             p = i
             q = n // p

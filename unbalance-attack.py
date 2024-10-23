@@ -1,8 +1,8 @@
 from sympy import mod_inverse, isprime, mod_inverse, gcd
 
-# 试除法攻击进行因式分解
+# using trial divisio to factorize
 def trial_division_attack(n):
-    # 试除法从2到2^16范围内寻找因子
+    # from 2 to 2^16
     for i in range(2, 2**16):
         if n % i == 0:
             q = i
